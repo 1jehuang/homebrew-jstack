@@ -1,11 +1,16 @@
 cask "scrollwm" do
-  version "0.1.1"
-  sha256 "ccdc60de6c82bbd67567d3214c183c81141eede1bc72be34c2eb713beb167b1f"
+  version "0.2.1"
+  sha256 "6208cdcb4d6356c7620333ee8c048d85b1c39b07d9d639299f1ae972b5fdf2e4"
 
   url "https://github.com/1jehuang/scrollwm/releases/download/v#{version}/ScrollWM-#{version}.zip"
   name "ScrollWM"
   desc "Scrolling, PaperWM-style window manager"
   homepage "https://github.com/1jehuang/scrollwm"
+
+  livecheck do
+    url :url
+    strategy :github_latest
+  end
 
   depends_on macos: :sonoma
 

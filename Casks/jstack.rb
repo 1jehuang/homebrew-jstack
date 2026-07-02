@@ -1,18 +1,25 @@
 cask "jstack" do
   arch arm: "aarch64", intel: "x86_64"
 
-  version "0.31.2"
-  sha256 arm:   "504915b45449fb5d32b5a9a8b732e958edc17ed1811f20770c9d1b12fce4d02b",
-         intel: "4f01552931b650635ec69d6e791ca5efb26bb13eeb2b784bb33b938dc8987594"
+  version "0.34.0"
+  sha256 arm:   "bfddb4810d76928c568ea3bc461c877204ae0419cf9d2c7b5fd28072ceedec66",
+         intel: "52db1dcd1e79f88db3dca48f0bb744f0700a6078c97daf4b7905283685a6e2e4"
 
   url "https://github.com/1jehuang/jcode/releases/download/v#{version}/jcode-macos-#{arch}.tar.gz"
   name "jstack"
   name "jcode + ScrollWM"
   desc "Bundle of the jcode terminal coding agent and ScrollWM window manager"
-  homepage "https://github.com/1jehuang/jstack"
+  homepage "https://github.com/1jehuang/homebrew-jstack"
+
+  livecheck do
+    url "https://github.com/1jehuang/jcode"
+    strategy :github_latest
+  end
 
   conflicts_with cask: "1jehuang/jstack/jcode"
   depends_on cask: "1jehuang/jstack/scrollwm"
+  # ScrollWM requires Sonoma, and the Intel jcode binary targets macOS 14.
+  depends_on macos: :sonoma
 
   binary "jcode-macos-#{arch}", target: "jcode"
 
